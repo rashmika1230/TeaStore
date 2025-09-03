@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SabuCha Admin Login</title>
+        <link rel="stylesheet" href="assets/css/notification.css">
+
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <style>
+            :root {
+                --primary-green: #2d5a27;
+                --light-green: #e8f5e8;
+                --accent-green: #4a7c59;
+                --text-gray: #6c757d;
+            }
+
+            body {
+                background: linear-gradient(135deg, var(--light-green) 0%, #ffffff 100%);
+                min-height: 100vh;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .login-container {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .login-card {
+                background: white;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(45, 90, 39, 0.1);
+                overflow: hidden;
+                max-width: 400px;
+                width: 100%;
+                border: 1px solid rgba(45, 90, 39, 0.1);
+            }
+
+            .login-header {
+                background: var(--primary-green);
+                padding: 40px 30px 30px;
+                text-align: center;
+                color: white;
+            }
+
+            .logo {
+                font-size: 2rem;
+                font-weight: bold;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .logo i {
+                color: #90EE90;
+            }
+
+            .login-subtitle {
+                font-size: 0.9rem;
+                opacity: 0.8;
+                margin-bottom: 0;
+            }
+
+            .login-form {
+                padding: 40px 30px;
+            }
+
+            .form-floating {
+                margin-bottom: 20px;
+            }
+
+            .form-floating input {
+                border: 2px solid #e9ecef;
+                border-radius: 12px;
+                padding: 1rem 0.75rem;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+
+            .form-floating input:focus {
+                border-color: var(--primary-green);
+                box-shadow: 0 0 0 0.2rem rgba(45, 90, 39, 0.15);
+            }
+
+            .form-floating label {
+                color: var(--text-gray);
+                font-size: 0.9rem;
+            }
+
+            .btn-login {
+                background: var(--primary-green);
+                border: none;
+                border-radius: 12px;
+                padding: 12px 30px;
+                font-weight: 600;
+                font-size: 1rem;
+                width: 100%;
+                transition: all 0.3s ease;
+                margin-top: 10px;
+            }
+
+            .btn-login:hover {
+                background: var(--accent-green);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(45, 90, 39, 0.3);
+            }
+
+            .form-check {
+                margin: 20px 0;
+            }
+
+            .form-check-input:checked {
+                background-color: var(--primary-green);
+                border-color: var(--primary-green);
+            }
+
+            .form-check-input:focus {
+                box-shadow: 0 0 0 0.25rem rgba(45, 90, 39, 0.15);
+            }
+
+            .forgot-password {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .forgot-password a {
+                color: var(--primary-green);
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: color 0.3s ease;
+            }
+
+            .forgot-password a:hover {
+                color: var(--accent-green);
+                text-decoration: underline;
+            }
+
+            .input-icon {
+                position: relative;
+            }
+
+            .input-icon i {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--text-gray);
+                z-index: 10;
+            }
+
+            .alert-custom {
+                border-radius: 12px;
+                border: none;
+                margin-bottom: 20px;
+            }
+
+            .loading-spinner {
+                display: none;
+            }
+
+            .btn-login.loading {
+                position: relative;
+                color: transparent;
+            }
+
+            .btn-login.loading .loading-spinner {
+                display: inline-block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            @media (max-width: 576px) {
+                .login-form {
+                    padding: 30px 20px;
+                }
+
+                .login-header {
+                    padding: 30px 20px 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        SabuCha
+                    </div>
+                    <p class="login-subtitle">Admin Dashboard Access</p>
+                </div>
+
+                <div class="login-form">
+                    <div id="loginAlert" class="alert alert-danger alert-custom d-none" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <span id="alertMessage">Invalid credentials. Please try again.</span>
+                    </div>
+
+
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        <label for="email">
+                            <i class="fas fa-user me-2"></i>Email address
+                        </label>
+                    </div>
+
+                    <div class="form-floating input-icon">
+                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                        <label for="password">
+                            Password
+                        </label>
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword()" style="cursor: pointer;"></i>
+                    </div>
+
+                   
+
+                    <button type="submit" class="btn btn-success btn-login" onclick="adminLogin();">
+                        <i class="fas fa-sign-in-alt me-2"></i>
+                        Sign In to Dashboard
+
+                    </button>
+
+
+                   
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/admin-login.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

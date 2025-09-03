@@ -1,0 +1,194 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sabujcha - Herbal Drinks</title>
+        <meta name="description" content="">
+        <meta name="robots" content="noindex, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+        <!-- all css here -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/slick.css">
+        <link rel="stylesheet" href="assets/css/chosen.min.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/themify-icons.css">
+        <link rel="stylesheet" href="assets/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets/css/jquery-ui.css">
+        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="assets/css/notification.css">
+        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <!-- header start -->
+        <header class="header-area gray-bg clearfix">
+
+        </header>
+        <!-- header end -->
+        <!-- Breadcrumb Area Start -->
+        <div class="breadcrumb-area bg-image-3 ptb-150">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <h3>LOGIN</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb Area End -->
+        <div class="login-register-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                        <div class="login-register-wrapper" id="mainBox">
+                            <div class="login-register-tab-list nav">
+                                <a class="active" data-toggle="tab" href="#lg1">
+                                    <h4> login </h4>
+                                </a>
+                                <a data-toggle="tab" href="#lg2">
+                                    <h4> register </h4>
+                                </a>
+                            </div>
+                            <p class="text-center text-danger" id="message"></p>
+                            <div class="tab-content">
+                                <div id="lg1" class="tab-pane active">
+                                    <div class="login-form-container">
+                                        <div class="login-register-form">
+
+                                            <input type="email" name="email" placeholder="Email" id="sEmail">
+                                            <input type="password" name="user-password" placeholder="Password" id="sPassword">
+
+                                            <div class="button-box">
+                                                <div class="login-toggle-btn">
+                                                    <!--                                                    <input type="checkbox">
+                                                                                                        <label>Remember me</label>-->
+                                                    <!--<a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" data-bs-whatever="@mdo">Forgot Password?</a>-->
+                                                    <a  id="f-pass" onclick="sendLink();">Forgot Password?</a>
+                                                </div>
+                                                <button class="mt-3" type="submit" onclick="signIn();"><span>Login</span></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Forgot Password Modal -->
+                                <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered"> <!-- centers vertically -->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="forgotPasswordLabel">Forgot Your Password?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="mb-3">Enter your email address below and we'll send you a Verification to reset your password.</p>
+                                                <p class="text-center text-danger mb-3" id="fp-message"></p>
+                                                <div class="mb-3">
+                                                    <label for="fp-vcode" class="form-label">Verification Code</label>
+                                                    <input type="number" class="form-control" id="fp-vcode" name="fpVcode" required/>
+                                                </div>   
+
+                                                <div class="form-floating mb-3">
+                                                    <input type="password" class="form-control" id="newPassword" placeholder="New Password" required>
+
+                                                </div>
+
+                                                <div class="form-floating">
+                                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" required>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>-->
+                                                <button type="submit" form="forgotPasswordForm" class="btn btn-success" onclick="restPassword();">Rest Password</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--forget password-->
+
+                                <div id="lg2" class="tab-pane">
+                                    <div class="login-form-container">
+                                        <div class="login-register-form">
+
+                                            <input type="text" name="firstName" placeholder="First Name" id="firstName">
+                                            <input type="text" name="lastName" placeholder="Last Name" id="lastName">
+                                            <input type="text" name="mobile" placeholder="Mobile" id="mobile">
+                                            <input name="user-email" placeholder="Email" type="email" id="email">
+                                            <input type="password" name="user-password" placeholder="Password" id="password">
+                                            <div class="button-box mb-3">
+                                                <button type="submit" onclick="signUp();"><span>Register</span></button>                                                   
+                                            </div>
+                                            <!--                                            <input type="text" name="verification-code" placeholder="verification" id="vcode">
+                                                                                       <div class="button-box">
+                                                                                                <button type="submit"><span>Register</span></button>                                                   
+                                                                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--verification box-->
+                        <div class="d-none" id="vBox">
+                            <div class="login-register-tab-list nav">
+                                <a class="active" data-toggle="tab" href="">
+                                    <h4> Verification </h4>
+                                </a>
+                            </div>
+                            <div  class="tab-pane ">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">                                       
+                                        <input type="text" name="verification" placeholder="verification Code" id="vcode">
+
+                                        <div class="button-box">
+                                            <button onclick="verificationProcess();" type="submit"><span>Submit</span></button>
+                                        </div>                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer style Start -->
+        <footer class="footer-area pt-75 gray-bg-3">
+
+        </footer>
+        <!-- Footer style End -->
+
+
+        <!-- all js here -->
+        <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="assets/js/popper.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/js/isotope.pkgd.min.js"></script>
+        <script src="assets/js/ajax-mail.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/login-register.js"></script>
+        <script src="assets/js/content-loader.js"></script>
+    </body>
+
+</html>

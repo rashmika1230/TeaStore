@@ -1,0 +1,272 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sabujcha - Herbal Drinks</title>
+        <meta name="description" content="">
+        <meta name="robots" content="noindex, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+        <!-- all css here -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/slick.css">
+        <link rel="stylesheet" href="assets/css/chosen.min.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/themify-icons.css">
+        <link rel="stylesheet" href="assets/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets/css/jquery-ui.css">
+        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="assets/css/notification.css">
+        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body onload="loadCheckOutData();">
+        <!-- header start -->
+        <header class="header-area gray-bg clearfix">
+            
+        </header>
+        <!-- header end -->
+        <!-- Breadcrumb Area Start -->
+        <div class="breadcrumb-area bg-image-3 ptb-150">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <h3>CHECKOUT</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">CHECKOUT</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb Area End -->
+        <!-- checkout-area start -->
+        <div class="checkout-area pb-80 pt-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="checkout-wrapper">
+                            <div id="faq" class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title"><span>1.</span> <a id="panel1" data-toggle="collapse" data-parent="#faq" href="#payment-1">Checkout method</a></h5>
+                                    </div>
+                                    <div id="payment-1" class="panel-collapse collapse show">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-lg-5">
+                                                    <div class="checkout-register">
+                                                        <div class="title-wrap">
+                                                            <h4 class="cart-bottom-title section-bg-white">CHECKOUT AS A GUEST OR REGISTER</h4>
+                                                        </div>
+                                                        <div class="register-us">
+                                                            <ul>
+                                                                <li><input type="checkbox" id="checkout-checkbox"> Checkout as Registered user</li>
+                                                                <!--<li><input type="checkbox"> Register</li>-->
+                                                            </ul>
+                                                        </div>
+                                                        <h6>REGISTER AND SAVE TIME!</h6>
+                                                        <div class="register-us-2">
+                                                            <p>Register with us for future convenience.</p>
+                                                            <ul>
+                                                                <li>Fast and easy checkout</li>
+                                                                <li>Easy access to your order history and status</li>
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" >
+                                        <h5 class="panel-title"><span>2.</span> <a id="panel2" data-toggle="collapse" data-parent="#faq" href="#payment-2">billing information</a></h5>
+                                    </div>
+                                    <div id="payment-2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="billing-information-wrapper">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="billing-info">
+                                                            <label>First Name</label>
+                                                            <input type="text" id="firstName">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="billing-info">
+                                                            <label>Last Name</label>
+                                                            <input type="text" id="lastName">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="billing-info">
+                                                            <label>Email Address</label>
+                                                            <input type="email" id="email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="billing-info">
+                                                            <label>Mobile</label>
+                                                            <input type="text" id="mobile">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="billing-info">
+                                                            <label>Address</label>
+                                                            <input type="text" id="addressLine">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="billing-info">
+                                                            <label>Zip/Postal Code</label>
+                                                            <input type="text" id="postalCode">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="billing-select">
+                                                            <label>City</label>
+                                                            <select id="city-select">
+                                                                <option value="0">Select City</option>                                                       
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="billing-back-btn">
+                                                    <div class="billing-back">
+                                                        <a onclick="continueBtn(3);"><i class="ion-arrow-up-c"></i> back</a>
+                                                    </div>
+                                                    <div class="billing-btn">
+                                                        <button type="submit" onclick="continueBtn(1);">Continue</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title"><span>3.</span> <a id="panel3" data-toggle="collapse" data-parent="#faq" href="#payment-4">Shipping method</a></h5>
+                                    </div>
+                                    <div id="payment-4" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                            <div class="shipping-method-wrapper">
+                                                <div class="shipping-method">
+                                                    <p>In Colombo</p>
+                                                    <p id="in-colombo">0.00</p>
+                                                </div>
+                                                <div class="shipping-method">
+                                                    <p>Out Of Colombo</p>
+                                                    <p id="out-colombo">0.00</p>
+                                                </div>
+                                                <div class="billing-back-btn">
+                                                    <div class="billing-back">
+                                                        <a onclick="continueBtn(4);"><i class="ion-arrow-up-c"></i> back</a>
+                                                    </div>
+                                                    <div class="billing-btn">
+                                                        <button type="submit" onclick="continueBtn(2);">Continue</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title"><span>4.</span> <a id="panel4" data-toggle="collapse" data-parent="#faq" href="#payment-6">Order Review</a></h5>
+                                    </div>
+                                    <div id="payment-6" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="order-review-wrapper">
+                                                <div class="order-review">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="width-1">Product Name</th>
+                                                                    <th class="width-2">Price</th>
+                                                                    <th class="width-3">Qty</th>
+                                                                    <th class="width-4">Subtotal</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="checkout-orders-body">
+
+
+                                                            </tbody>
+                                                            <tfoot id="checkout-orders-foot">
+
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    <div class="billing-back-btn">
+                                                        <span>
+                                                            Forgot an Item?
+                                                            <a href="cart-page.html"> Edit Your Cart.</a>
+
+                                                        </span>
+                                                        <div class="billing-btn">
+                                                            <button type="submit" onclick="checkOut();">Check Out</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="checkout-progress">
+                            <h4>Checkout Progress</h4>
+                            <ul>
+                                <li>Billing Address</li>
+                                <li>Shipping Address</li>
+                                <li>Shipping Method</li>
+                                <li>Payment Method</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer style Start -->
+        <footer class="footer-area pt-75 gray-bg-3">
+            
+        </footer>
+        <!-- Footer style End -->
+
+        <!-- all js here -->
+        <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+
+        <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="assets/js/popper.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/js/isotope.pkgd.min.js"></script>
+        <script src="assets/js/ajax-mail.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/main.js"></script>
+
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/content-loader.js"></script>
+        <script src="assets/js/checkout.js"></script>
+    </body>
+
+</html>

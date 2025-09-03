@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <title>SabuCha -  Admin Dashboard</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/admin.css">
+        <link rel="stylesheet" href="assets/css/notification.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    </head>
+    <body onload="loadProductData(); loadStockProductData(); loadStockDetails(); loadUsers();">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>SabuCha</span>
+                </div>
+            </div>
+
+            <div class="nav-menu">
+                <div class="nav-section">
+                    <div class="section-title">Main</div>
+                    <a class="nav-item active" data-tab="dashboard" onclick="refreshAllTabs();" id="mdb">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="section-title">Management</div>
+                    <a href="#" class="nav-item" data-tab="userManagement" onclick="refreshCurrentTab();" id="um">
+                        <i class="fas fa-users"></i>
+                        <span>User Management</span>
+                    </a>
+                    <a class="nav-item" data-tab="products" onclick="refreshCurrentTab();" id="pm">
+                        <i class="fas fa-mug-hot"></i>
+                        <span>Product Management</span>
+                        <!--<span class="badge">12</span>-->
+                    </a>
+
+                    <a class="nav-item" data-tab="stock" onclick="refreshCurrentTab();" id="sm">
+                        <i class="fas fa-boxes"></i>
+                        <span>Stock Management</span>
+                    </a>
+                    <!--                    <a href="#" class="nav-item">
+                                            <i class="fas fa-shopping-basket"></i>
+                                            <span>Carts</span>
+                                        </a>-->
+                </div>
+
+                <div class="nav-section">
+                    <div class="section-title">Analytics</div>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reports</span>
+                    </a>
+                    <a href="#" class="nav-item future-item">
+                        <i class="fas fa-comments"></i>
+                        <span>Reviews</span>
+                    </a>
+                    <a href="#" class="nav-item future-item">
+                        <i class="fas fa-blog"></i>
+                        <span>Blog</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="section-title">Settings</div>
+                    <!--                    <a href="#" class="nav-item">
+                                            <i class="fas fa-cog"></i>
+                                            <span>Settings</span>
+                                        </a>-->
+                    <a href="#" class="nav-item" onclick="adminlogOut();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Topbar -->
+            <div class="topbar">
+                <div class="search-bar">
+                    <!--                    <i class="fas fa-search"></i>
+                                        <input type="text" placeholder="Search users, products, orders...">-->
+                </div>
+
+                <div class="topbar-right">
+                    <div class="notification">
+                        <!--<i class="fas fa-bell"></i>-->
+                        <!--<span class="notification-badge">5</span>-->
+                    </div>
+                    <div class="admin-profile">
+                        <!--<div class="admin-avatar">AM</div>-->
+                        <div class="admin-info">
+                            <span class="admin-name" id="admin-name">Admin Manager</span>
+                            <!--<span class="admin-role">Super Admin</span>-->
+                        </div>
+                        <!--<i class="fas fa-chevron-down"></i>-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area Main dashboard-->
+            <div class="content-area active" id="dashboard">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">SabuCha Admin Dashboard</h1>
+                        <p class="page-subtitle">Manage your tea retail platform efficiently. Monitor orders, inventory, and customer activity with this comprehensive dashboard.</p>
+                    </div>
+                    <!--                    <button class="btn btn-primary">
+                                            <i class="fas fa-plus"></i> Add Product
+                                        </button>-->
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card stat-users">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,842</h3>
+                            <p>Total Users</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.5% this month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-products">
+                        <div class="stat-icon">
+                            <i class="fas fa-mug-hot"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>124</h3>
+                            <p>Tea Products</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8 new this month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-orders">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>428</h3>
+                            <p>Monthly Orders</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>22.3% from last month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-revenue">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$32,560</h3>
+                            <p>Monthly Revenue</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>18.7% from last month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <i class="fas fa-shopping-cart"></i>
+                            Recent Orders
+                        </div>
+                        <div class="table-actions">
+                            <!--                            <button class="btn btn-outline">
+                                                            <i class="fas fa-filter"></i> Filter
+                                                        </button>-->
+                            <!--                            <button class="btn btn-primary">
+                                                            <i class="fas fa-plus"></i> New Order
+                                                        </button>-->
+                        </div>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customers</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-orders">
+
+
+                        </tbody>
+                    </table>
+
+                    <!-- Bootstrap Pagination -->
+                    <nav aria-label="order pagination">
+                        <ul id="order-pagination" class="pagination justify-content-center">
+                            <!-- Pagination will be generated here -->
+                        </ul>
+                    </nav>
+
+                </div>
+
+                <!-- Brewing Tips -->
+                <div class="brewing-tips">
+                    <div class="brewing-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Tea Brewing Tip of the Day</h3>
+                    </div>
+                    <p class="brewing-content">
+                        For the perfect cup of green tea, use water at about 175°F (80°C) and steep for 2-3 minutes. 
+                        Avoid boiling water as it can scorch the delicate leaves and result in a bitter taste. 
+                        Enjoy the subtle flavors and health benefits of our premium green tea selection!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Product Management -->
+            <div class="content-area" id="products">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Product Registration</h1>
+                        <p class="page-subtitle">Add new tea products to your inventory. Manage categories and colors for better organization.</p>
+                    </div>
+                </div>
+
+                <!-- Product Registration Form -->
+                <div class="form-container">
+                    <div class="form-header">
+                        <i class="fas fa-plus-circle"></i>
+                        <h2>Register New Tea Product</h2>
+                    </div>
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+                            <label class="form-label" for="productCategory">Category <span>*</span></label>
+                            <select id="productCategory" class="form-select">
+                                <option value="0">Select a category</option>
+
+                                <option value="add">+ Add New Category</option>
+                            </select>
+
+                            <!-- New Category Form -->
+                            <div id="newCategoryForm" class="add-new-option" style="display: none;">
+                                <h4><i class="fas fa-folder-plus"></i> Add New Category</h4>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="newCategory" class="form-control" placeholder="Enter new category name">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary"  onclick="addNewCategory();">
+                                            <i class="fas fa-plus"></i> Add Category
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="productColor">Color <span>*</span></label>
+                            <select id="productColor" class="form-select">
+                                <option value="0">Select a color</option>
+
+                                <option value="add">+ Add New Color</option>
+                            </select>
+
+                            <!-- New Color Form -->
+                            <div id="newColorForm" class="add-new-option" style="display: none;">
+                                <h4><i class="fas fa-palette"></i> Add New Color</h4>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="newColorName" class="form-control" placeholder="Color name (e.g., Forest Green)">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" onclick="addNewColor();">
+                                            <i class="fas fa-plus"></i> Add Color
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!--product-name-->
+                        <div class="form-group">
+                            <label class="form-label" for="productName">Product Name <span>*</span></label>
+                            <input type="text" id="productName" class="form-control" placeholder="Enter product name">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-row">
+                        <!-- Image Upload Input Template (x6) -->
+                        <div class="form-group">
+                            <label class="form-label">Product Image</label>
+                            <div id="uploadContainer1"
+                                 style="border: 1px dashed var(--border); border-radius: 8px; padding: 20px; text-align: center; background: var(--bg-light); cursor: pointer;"
+                                 onclick="document.getElementById('fileInput1').click()">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: var(--text-light); margin-bottom: 10px;"></i>
+                                <p style="color: var(--text-medium); margin-bottom: 15px;">Drag & drop your image here or click to browse</p>
+
+                                <div id="imagePreview1" style="margin-bottom: 15px;"></div>
+
+                                <input type="file" id="fileInput1" accept="image/*" class="visually-hidden" onchange="handleFiles(this.files, 'imagePreview1')">
+                                <label for="fileInput1" class="btn btn-outline"><i class="fas fa-folder-open"></i> Select Image</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Additional Image</label>
+                            <div id="uploadContainer2"
+                                 style="border: 1px dashed var(--border); border-radius: 8px; padding: 20px; text-align: center; background: var(--bg-light); cursor: pointer;"
+                                 onclick="document.getElementById('fileInput2').click()">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: var(--text-light); margin-bottom: 10px;"></i>
+                                <p style="color: var(--text-medium); margin-bottom: 15px;">Drag & drop your image here or click to browse</p>
+
+                                <div id="imagePreview2" style="margin-bottom: 15px;"></div>
+
+                                <input type="file" id="fileInput2" accept="image/*" class="visually-hidden" onchange="handleFiles(this.files, 'imagePreview2')">
+                                <label for="fileInput2" class="btn btn-outline"><i class="fas fa-folder-open"></i> Select Image</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Additional Image</label>
+                            <div id="uploadContainer3"
+                                 style="border: 1px dashed var(--border); border-radius: 8px; padding: 20px; text-align: center; background: var(--bg-light); cursor: pointer;"
+                                 onclick="document.getElementById('fileInput3').click()">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: var(--text-light); margin-bottom: 10px;"></i>
+                                <p style="color: var(--text-medium); margin-bottom: 15px;">Drag & drop your image here or click to browse</p>
+
+                                <div id="imagePreview3" style="margin-bottom: 15px;"></div>
+
+                                <input type="file" id="fileInput3" accept="image/*" class="visually-hidden" onchange="handleFiles(this.files, 'imagePreview3')">
+                                <label for="fileInput3" class="btn btn-outline"><i class="fas fa-folder-open"></i> Select Image</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Additional Image</label>
+                            <div id="uploadContainer4"
+                                 style="border: 1px dashed var(--border); border-radius: 8px; padding: 20px; text-align: center; background: var(--bg-light); cursor: pointer;"
+                                 onclick="document.getElementById('fileInput4').click()">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: var(--text-light); margin-bottom: 10px;"></i>
+                                <p style="color: var(--text-medium); margin-bottom: 15px;">Drag & drop your image here or click to browse</p>
+
+                                <div id="imagePreview4" style="margin-bottom: 15px;"></div>
+
+                                <input type="file" id="fileInput4" accept="image/*" class="visually-hidden" onchange="handleFiles(this.files, 'imagePreview4')">
+                                <label for="fileInput4" class="btn btn-outline"><i class="fas fa-folder-open"></i> Select Image</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Additional Image</label>
+                            <div id="uploadContainer5"
+                                 style="border: 1px dashed var(--border); border-radius: 8px; padding: 20px; text-align: center; background: var(--bg-light); cursor: pointer;"
+                                 onclick="document.getElementById('fileInput5').click()">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: var(--text-light); margin-bottom: 10px;"></i>
+                                <p style="color: var(--text-medium); margin-bottom: 15px;">Drag & drop your image here or click to browse</p>
+
+                                <div id="imagePreview5" style="margin-bottom: 15px;"></div>
+
+                                <input type="file" id="fileInput5" accept="image/*" class="visually-hidden" onchange="handleFiles(this.files, 'imagePreview5')">
+                                <label for="fileInput5" class="btn btn-outline"><i class="fas fa-folder-open"></i> Select Image</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Additional Image</label>
+                            <div id="uploadContainer6"
+                                 style="border: 1px dashed var(--border); border-radius: 8px; padding: 20px; text-align: center; background: var(--bg-light); cursor: pointer;"
+                                 onclick="document.getElementById('fileInput6').click()">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: var(--text-light); margin-bottom: 10px;"></i>
+                                <p style="color: var(--text-medium); margin-bottom: 15px;">Drag & drop your image here or click to browse</p>
+
+                                <div id="imagePreview6" style="margin-bottom: 15px;"></div>
+
+                                <input type="file" id="fileInput6" accept="image/*" class="visually-hidden" onchange="handleFiles(this.files, 'imagePreview6')">
+                                <label for="fileInput6" class="btn btn-outline"><i class="fas fa-folder-open"></i> Select Image</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="productDescription">Product Description <span>*</span></label>
+                            <textarea id="productDescription" class="form-control" placeholder="Describe the product features, origin, taste, etc." rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="saveProduct();">
+                            <i class="fas fa-save" ></i> Save Product
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-times" onclick="refreshCurrentTab();"></i> Cancel
+                        </button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- Stock Management Section -->
+            <div class="content-area" id="stock">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Inventory Management</h1>
+                        <p class="page-subtitle">Manage stock levels, track inventory, and update product quantities across different sizes.</p>
+                    </div>
+                    <!--                    <button class="btn btn-primary">
+                                            <i class="fas fa-plus"></i> Add Stock
+                                        </button>-->
+                </div>
+
+                <!-- Product Selection Form -->
+                <div class="form-container">
+                    <div class="form-header">
+                        <i class="fas fa-search"></i>
+                        <h2>Select Product</h2>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="productSelect">Product <span>*</span></label>
+                            <select id="productSelect" class="form-select" onchange="loadProductForStock();">
+                                <option value="0">Select a product</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Preview -->
+                <div class="preview-card" id="productPreview">
+                    <div class="preview-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h3>Product Details</h3>
+                    </div>
+
+                    <div class="preview-content">
+                        <div class="preview-image">
+                            <img src="#" class="fas fa-mug-hot" style="font-size: 80px; color: #4caf50;" id="stockProductImage"/>
+                        </div>
+
+                        <div class="preview-details">
+                            <table class="detail-table">
+                                <tr>
+                                    <td class="detail-label">Product Id:</td>
+                                    <td class="detail-value" id="stockProductId">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">Product Name</td>
+                                    <td class="detail-value" id="stockProductName">Green Tea</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">Category:</td>
+                                    <td class="detail-value" id="stockProductCategory">Green Tea</td>
+                                </tr>
+                                <tr>
+                                    <td class="detail-label">Color</td>
+                                    <td class="detail-value" id="stockProductColor">Green</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="detail-label">Last Updated:</td>
+                                    <td class="detail-value" id="stockProductDate">2025-07-15</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stock Management Form -->
+                <div class="form-container">
+                    <div class="form-header">
+                        <i class="fas fa-edit"></i>
+                        <h2>Update Stock</h2>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="sizeSelect">Sizes <span>*</span></label>
+                            <select id="sizeSelect" class="form-select">
+                                <option value="0">Select a Size</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="stockPrice">Price (LKR) <span>*</span></label>
+                            <input type="number" id="stockPrice" class="form-control" value="0" min="0" step="0.01">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Quantity</label>
+                            <div class="size-options">
+                                <input type="number" class="form-control" value="0" min="0" id="qty">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="updateStock();">
+                            <i class="fas fa-save"></i> Update Stock
+                        </button>
+                        <button class="btn btn-outline" onclick="refreshCurrentTab();">
+                            <i class="fas fa-times" ></i> Cancel
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- Inventory History -->
+                <div class="form-container">
+                    <div class="form-header">
+                        <i class="fas fa-history"></i>
+                        <h2>Inventory History</h2>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Product Name</th>
+                                <th>Size</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stockDetailsBody">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+
+                    <!-- Bootstrap Pagination -->
+                    <nav aria-label="Stock pagination">
+                        <ul id="pagination" class="pagination justify-content-center">
+                            <!-- Pagination will be generated here -->
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!--update stock modal-->
+            <!-- Update Stock Modal -->
+            <div class="modal fade" id="updateStockModal" tabindex="-1" aria-labelledby="updateStockModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom">
+                            <h5 class="modal-title d-flex align-items-center" id="updateStockModalLabel">
+                                <i class="bi bi-pencil-square text-success me-2"></i>
+                                Update Stock
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <p class="mb-3 text-danger text-center" id="alert-message"></p>
+                            
+                            <div class="mb-3">
+                                <label for="price" class="form-label">
+                                    product Name <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="modal-product" placeholder="0" min="0" step="0.01" required>
+
+                            </div>
+
+                            <div class="row">
+
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="price" class="form-label">
+                                       id<span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="stockId" placeholder="0" min="0" step="0.01" required>
+
+                                </div>
+
+                                <!-- Quantity Field -->
+                                <div class="col-md-6 mb-4">
+                                    <label for="quantity" class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" id="modal-qty" placeholder="0" min="0" step="1">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <!-- Sizes Field -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="sizes" class="form-label">
+                                        Sizes <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-select" id="modal-sizes" required>
+
+                                    </select>
+                                </div>
+
+                                <!-- Price Field -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="price" class="form-label">
+                                        Price (LKR) <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="number" class="form-control" id="modal-price" placeholder="0" min="0" step="0.01" required>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer border-top">
+                            <button type="button" class="btn btn-success" onclick="updateStockModal();">
+                                <i class="bi bi-check-circle me-1"></i>
+                                Update Stock
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="cancel-btn">
+                                <i class="bi bi-x-circle me-1"></i>
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--update stock modal-->
+
+            <!--user management-->
+            <div class="content-area" id="userManagement">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">User Management</h1>
+                        <p class="page-subtitle">Manage user levels, track inventory, and update product quantities across different sizes.</p>
+                    </div>
+                    <!--                    <button class="btn btn-primary">
+                                            <i class="fas fa-plus"></i> Add Stock
+                                        </button>-->
+                </div>
+
+                <!-- user table -->
+                <div class="form-container">
+                    <div class="form-header">
+                        <i class="fas fa-user"></i>
+                        <h2>User History</h2>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Register Date</th>
+                                <th>Verification</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+
+                    <!-- Bootstrap Pagination -->
+                    <nav aria-label="user pagination">
+                        <ul id="pagination-user" class="pagination justify-content-center">
+                            <!-- Pagination will be generated here -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/admin.js"></script>
+        <script src="assets/js/dashboard.js"></script>
+        <script src="assets/js/product-load.js"></script>
+        <script src="assets/js/stock-load.js"></script>
+        <script src="assets/js/load-users.js"></script>
+        <script src="assets/js/admin-log-out.js"></script>
+        <script src="assets/js/tab-refresh.js"></script>
+    </body>
+</html>
